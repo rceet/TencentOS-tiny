@@ -2,7 +2,7 @@
 
 ## 1.组件介绍
 
-TensorFlow Lite Micro 组件是 Google TensorFlow 团队针对微处理器平台设计的端侧推理框架，该推理框架主要解决在资源, 功耗, 性能受限的嵌入式系统中, 如何简单快速高效部署 Tensorflow Lite 深度学习模型。CMSIS 全称 Software Interface Standard for Arm Cortex-based Microcontrollers，其中 CMSIS NN 组件为 AI 加速库，包含高效的神经网络算子来减小内存占用和最大化硬件性能。相关代码和文档已经开源并在多个平台上得到验证（https://www.keil.com/pack/doc/CMSIS/NN/html/index.html）。
+TensorFlow Lite Micro 组件是 Google TensorFlow 团队针对微处理器平台设计的端侧推理框架，该推理框架主要解决在资源, 功耗, 性能受限的嵌入式系统中, 如何简单快速高效部署 Tensorflow Lite 深度学习模型。CMSIS 全称 Software Interface Standard for Arm Cortex-based Microcontrollers，其中 CMSIS-NN 组件为 AI 加速库，包含高效的神经网络算子来减小内存占用和最大化硬件性能。相关代码和文档已经开源并在多个平台上得到验证（ https://www.keil.com/pack/doc/CMSIS/NN/html/index.html ）。
 
 ## 2.目录结构
 
@@ -33,11 +33,11 @@ ARM_CortexM4_lib 和 ARM_CortexM7_lib 两个文件夹中存放了针对 Cortex M
 ## 4. 附录：Tensorflow Lite Micro 性能优化情况
 
 - 硬件平台：Necluo STM32L496ZG
-- 涉及的加速库：ARM CMSIS-NN
-- 测试输入图片：`tensorflow\lite\micro\tools\make\downloads\person_model_int8` 目录 `person_image_data.cc` 和 `no_person_image_data.cc` 中保存的 96 * 96 ( uint_8 ) 灰度图。
-- 单次执行和 10 次迭代的测试结果如下：
+- 加速库：ARM CMSIS-NN
+- 测试输入图片：`tensorflow\lite\micro\tools\make\downloads\person_model_int8` 目录中 `person_image_data.cc` 和 `no_person_image_data.cc` 保存的 96 * 96 pixels ( uint_8 ) 灰度图。
+- 单次执行和 10 次累计执行的测试结果如下：
 
-|                      Case                      |   Without ARM-CMSIS-NN   |   With ARM-CMSISNN   | Improvement |
+|                      Case                      |   Disable ARM-CMSIS-NN   |   Enable ARM-CMSISNN   | Improvement |
 | :--------------------------------------------: | :----------------------: | :------------------: | :---------: |
 |          Initialize_Benchmark_Runner           |     65 ticks (65 ms)     |   66 ticks (66 ms)   |      *      |
 |              Run_Single_Iteration              |  12476 ticks (12476 ms)  |  633 ticks (633 ms)  |   19.71X    |
